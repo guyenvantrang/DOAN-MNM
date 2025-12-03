@@ -1,0 +1,756 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tài liệu API Watch Store",
+        "description": "Danh sách API cho ứng dụng Khách hàng (ReactJS)",
+        "contact": {
+            "email": "admin@watchstore.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local API Server"
+        }
+    ],
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Đăng ký tài khoản",
+                "operationId": "e333802e95717fb33dfc14ab9d1b4307",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "hoten",
+                                    "email",
+                                    "password",
+                                    "password_confirmation",
+                                    "sdt"
+                                ],
+                                "properties": {
+                                    "hoten": {
+                                        "type": "string",
+                                        "example": "Nguyễn Văn A"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "khach@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "123456"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    },
+                                    "sdt": {
+                                        "type": "string",
+                                        "example": "0909123456"
+                                    },
+                                    "diachi": {
+                                        "type": "string",
+                                        "example": "TP.HCM"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Đăng ký thành công"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Đăng nhập",
+                "operationId": "46102be21227f83da7eff6d1a76eb698",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "khach@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Trả về Token"
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Lấy thông tin cá nhân",
+                "operationId": "4d598cf9062f314f3945d8e3518ca288",
+                "responses": {
+                    "200": {
+                        "description": "Thông tin user"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/user/update": {
+            "put": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Cập nhật thông tin cá nhân",
+                "operationId": "398ba5576073444789f32c21074b7999",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "hoten": {
+                                        "type": "string"
+                                    },
+                                    "sdt": {
+                                        "type": "string"
+                                    },
+                                    "diachi": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/user/change-password": {
+            "put": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Đổi mật khẩu",
+                "operationId": "ba0c83873df35236bedb7d9e7e56aa66",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "current_password",
+                                    "new_password",
+                                    "new_password_confirmation"
+                                ],
+                                "properties": {
+                                    "current_password": {
+                                        "type": "string"
+                                    },
+                                    "new_password": {
+                                        "type": "string"
+                                    },
+                                    "new_password_confirmation": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Tài khoản"
+                ],
+                "summary": "Đăng xuất",
+                "operationId": "c14f14643b9a4fb6b7e27622cf1a5deb",
+                "responses": {
+                    "200": {
+                        "description": "Đã đăng xuất"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/cart": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Giỏ hàng"
+                ],
+                "summary": "Xem giỏ hàng",
+                "operationId": "7fdb9b40bd4ad2baf12aa15164eab788",
+                "responses": {
+                    "200": {
+                        "description": "Danh sách sản phẩm"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/cart/add": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Giỏ hàng"
+                ],
+                "summary": "Thêm vào giỏ",
+                "operationId": "e940193f73a57895e17830b67c48f89c",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "masp": {
+                                        "type": "string",
+                                        "example": "SP001"
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/cart/update": {
+            "put": {
+                "tags": [
+                    "Khách hàng - Giỏ hàng"
+                ],
+                "summary": "Cập nhật số lượng",
+                "operationId": "a97269a5c7dda30f5a76c2379a950aba",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "masp": {
+                                        "type": "string",
+                                        "example": "SP001"
+                                    },
+                                    "quantity": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/cart/remove": {
+            "delete": {
+                "tags": [
+                    "Khách hàng - Giỏ hàng"
+                ],
+                "summary": "Xóa món hàng",
+                "operationId": "51207e83feb7b4aa041aeeda92eb74ef",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "masp": {
+                                        "type": "string",
+                                        "example": "SP001"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/checkout/preview": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Đặt hàng"
+                ],
+                "summary": "Xem trước đơn hàng (Tính phí ship, giảm giá)",
+                "operationId": "7e710023c0ef9e3b9f0d31fe05aeaaeb",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "coupon_code": {
+                                        "description": "Mã giảm giá (nếu có)",
+                                        "type": "string",
+                                        "example": "SALE50"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Trả về chi tiết tiền"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/checkout/place-order": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Đặt hàng"
+                ],
+                "summary": "Chốt đơn hàng (Tạo đơn trong DB)",
+                "operationId": "726b35c99ccfca249ecbdda522f48353",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "ten_nguoinhan",
+                                    "sdt_nguoinhan",
+                                    "diachi_giaohang",
+                                    "payment_method"
+                                ],
+                                "properties": {
+                                    "ten_nguoinhan": {
+                                        "type": "string",
+                                        "example": "Nguyen Van A"
+                                    },
+                                    "sdt_nguoinhan": {
+                                        "type": "string",
+                                        "example": "0909123456"
+                                    },
+                                    "diachi_giaohang": {
+                                        "type": "string",
+                                        "example": "123 Đường ABC, HCM"
+                                    },
+                                    "payment_method": {
+                                        "type": "string",
+                                        "example": "COD"
+                                    },
+                                    "coupon_code": {
+                                        "type": "string",
+                                        "example": "SALE50"
+                                    },
+                                    "ghichu": {
+                                        "type": "string",
+                                        "example": "Giao giờ hành chính"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Đặt hàng thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Đặt hàng"
+                ],
+                "summary": "Lịch sử đơn hàng",
+                "operationId": "ec2833a5b8b613c0e6cf01429924013d",
+                "responses": {
+                    "200": {
+                        "description": "Danh sách đơn hàng"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{id}": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Đặt hàng"
+                ],
+                "summary": "Chi tiết đơn hàng",
+                "operationId": "c0c70185df7bcc5d92bce27aab7ddbbc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Chi tiết đơn hàng và sản phẩm"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/api/orders/{id}/cancel": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Đặt hàng"
+                ],
+                "summary": "Hủy đơn hàng (Chỉ khi chưa xử lý)",
+                "operationId": "bd17112aac787fa611c364a5a087ca7d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ly_do": {
+                                        "type": "string",
+                                        "example": "Đổi ý"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Sản phẩm"
+                ],
+                "summary": "Lấy danh sách sản phẩm (Tìm kiếm, Lọc, Phân trang)",
+                "operationId": "88ff1c4110e2af09b78108755b5fa54f",
+                "parameters": [
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "Tìm theo tên",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "brand",
+                        "in": "query",
+                        "description": "Mã thương hiệu (VD: TH01)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Mã loại (VD: LO01)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "min_price",
+                        "in": "query",
+                        "description": "Giá tối thiểu",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "max_price",
+                        "in": "query",
+                        "description": "Giá tối đa",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "Sắp xếp (price_asc, price_desc, latest)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Sản phẩm"
+                ],
+                "summary": "Chi tiết sản phẩm",
+                "operationId": "d83ce5b842add284e9536019968dcb83",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Thông tin chi tiết"
+                    },
+                    "404": {
+                        "description": "Không tìm thấy"
+                    }
+                }
+            }
+        },
+        "/products/{id}/related": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Sản phẩm"
+                ],
+                "summary": "Sản phẩm liên quan (Cùng thương hiệu hoặc cùng loại)",
+                "operationId": "3670ae265a73e61929bbd1c928babd08",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Danh sách 4 sản phẩm liên quan"
+                    }
+                }
+            }
+        },
+        "/filters": {
+            "get": {
+                "tags": [
+                    "Khách hàng - Sản phẩm"
+                ],
+                "summary": "Lấy dữ liệu cho bộ lọc (Thương hiệu, Loại SP)",
+                "operationId": "6fb62d7f5a65a2d4ab1a46167e90fe1b",
+                "responses": {
+                    "200": {
+                        "description": "JSON chứa danh sách brands và categories"
+                    }
+                }
+            }
+        },
+        "/products/{id}/review": {
+            "post": {
+                "tags": [
+                    "Khách hàng - Sản phẩm"
+                ],
+                "summary": "Gửi đánh giá sản phẩm (Yêu cầu đăng nhập)",
+                "operationId": "3a13fa94b0cdad5522a7ff10a81f33ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Sản phẩm rất tốt!"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Thành công"
+                    }
+                },
+                "security": [
+                    {
+                        "sanctum": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Khách hàng - Tài khoản",
+            "description": "Khách hàng - Tài khoản"
+        },
+        {
+            "name": "Khách hàng - Giỏ hàng",
+            "description": "Khách hàng - Giỏ hàng"
+        },
+        {
+            "name": "Khách hàng - Đặt hàng",
+            "description": "Khách hàng - Đặt hàng"
+        },
+        {
+            "name": "Khách hàng - Sản phẩm",
+            "description": "Khách hàng - Sản phẩm"
+        }
+    ]
+}

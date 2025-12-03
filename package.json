@@ -1,0 +1,25 @@
+{
+    "$schema": "https://json.schemastore.org/package.json",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.1.14",
+        "axios": "^1.11.0",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^2.0.0",
+        "tailwindcss": "^4.1.14",
+        "vite": "^7.0.7"
+    },
+    "dependencies": {
+        "@alpinejs/collapse": "^3.15.1",
+        "@heroicons/react": "^2.2.0",
+        "alpinejs": "^3.15.0",
+        "flowbite": "^3.1.2",
+        "nouislider": "^15.8.1",
+        "tailwind-scrollbar": "^4.0.2"
+    }
+}

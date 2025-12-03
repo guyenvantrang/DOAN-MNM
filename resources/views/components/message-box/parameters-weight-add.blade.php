@@ -1,0 +1,102 @@
+<!-- Modal thêm khối lượng đồng hồ -->
+<div>
+    <div x-show="modalOpen" x-cloak x-transition.opacity style="background-color: rgba(0,0,0,0.6);"
+        class="fixed inset-0 z-50 flex items-center justify-center pointer-events-auto">
+
+        <div @click.away="modalOpen = false" x-transition.scale
+            class="bg-gray-900 rounded-xl p-6 w-full max-w-lg shadow-2xl border border-gray-700">
+
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                <h2 class="text-2xl font-bold text-gray-100"> Thêm khối lượng đồng hồ</h2>
+                <button type="button" @click="modalOpen = false" class="text-gray-400 hover:text-gray-200 transition">
+                    <!-- Heroicon X -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form action="{{ route('kl.them') }}" method="POST" id="addWeightForm" class="space-y-4">
+                @csrf
+                <!-- Chỉ số -->
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5l3 3-12 12H6v-3l12-12z" />
+                        </svg>
+                        <label for="CHISO" class="block text-gray-200 mb-1">Chỉ số:</label>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="CHISO" name="CHISO"
+                            class="w-full px-3 py-2 rounded bg-gray-800 text-gray-100 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+
+                <!-- Đơn vị đo -->
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5l3 3-12 12H6v-3l12-12z" />
+                        </svg>
+                        <label for="DONVIDO" class="block text-gray-200 mb-1">Đơn vị đo:</label>
+                    </div>
+                    <div class="relative">
+                        <input type="text" id="DONVIDO" name="DONVIDO"
+                            class="w-full px-3 py-2 rounded bg-gray-800 text-gray-100 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5l3 3-12 12H6v-3l12-12z" />
+                        </svg>
+                        <label for="MOTA" class="block text-gray-200 mb-1">Mô tả:</label>
+                    </div>
+                    <div class="relative">
+                        <textarea type="text" id="MOTA" name="MOTA"
+                            class="w-full px-3 py-2 rounded bg-gray-800 text-gray-100 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none" ></textarea>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-end gap-3 mt-4">
+                    <button type="button" @click="modalOpen=false"
+                        class="flex items-center gap-1 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded transition">
+                        <!-- Heroicon X -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Đóng
+                    </button>
+
+                    <button type="submit"
+                        class="flex items-center gap-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition">
+                        <!-- Heroicon Check -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Thêm
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
